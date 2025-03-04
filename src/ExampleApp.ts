@@ -14,6 +14,9 @@ export class ExampleApp extends gfx.GfxApp
     private character: gfx.Node3;
     public morphAlpha: number;
     private targetMesh = "2";
+    private startColor = new gfx.Color(0, 0.5, 0.5);
+    private targetColor = new gfx.Color(1.0, 0.0, 0);
+    private ground : gfx.Mesh3;
 
     constructor()
     {
@@ -44,10 +47,10 @@ export class ExampleApp extends gfx.GfxApp
         this.scene.add(pointLight);
 
         // Create the ground
-        const ground = gfx.Geometry3Factory.createBox(5, 1, 5);
-        ground.material.setColor(new gfx.Color(0, 0.5, 0.5));
-        ground.position.y = -0.5;
-        this.scene.add(ground);
+        this.ground = gfx.Geometry3Factory.createBox(5, 1, 5);
+        this.ground.material.setColor(this.startColor);
+        this.ground.position.y = -0.5;
+        this.scene.add(this.ground);
 
         
 
