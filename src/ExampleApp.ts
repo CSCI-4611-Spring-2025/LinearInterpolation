@@ -13,6 +13,7 @@ export class ExampleApp extends gfx.GfxApp
     private cameraControls: gfx.OrbitControls;
     private character: gfx.Node3;
     public morphAlpha: number;
+    private targetMesh = "2";
 
     constructor()
     {
@@ -48,45 +49,47 @@ export class ExampleApp extends gfx.GfxApp
         ground.position.y = -0.5;
         this.scene.add(ground);
 
+        
+
         this.character.add(this.loadMorphMesh(
             './assets/LinkBody1.obj', 
-            './assets/LinkBody2.obj', 
+            './assets/LinkBody' + this.targetMesh + '.obj', 
             './assets/LinkBody.png'
         ));
 
         this.character.add(this.loadMorphMesh(
             './assets/LinkEquipment1.obj', 
-            './assets/LinkEquipment2.obj', 
+            './assets/LinkEquipment' + this.targetMesh + '.obj', 
             './assets/LinkEquipment.png'
         ));
 
         this.character.add(this.loadMorphMesh(
             './assets/LinkEyes1.obj', 
-            './assets/LinkEyes2.obj', 
+            './assets/LinkEyes' + this.targetMesh + '.obj', 
             './assets/LinkEyes.png'
         ));
 
         this.character.add(this.loadMorphMesh(
             './assets/LinkFace1.obj', 
-            './assets/LinkFace2.obj', 
+            './assets/LinkFace' + this.targetMesh + '.obj', 
             './assets/LinkSkin.png'
         ));
 
         this.character.add(this.loadMorphMesh(
             './assets/LinkHair1.obj', 
-            './assets/LinkHair2.obj', 
+            './assets/LinkHair' + this.targetMesh + '.obj', 
             './assets/LinkBody.png'
         ));
 
         this.character.add(this.loadMorphMesh(
             './assets/LinkHands1.obj', 
-            './assets/LinkHands2.obj', 
+            './assets/LinkHands' + this.targetMesh + '.obj', 
             './assets/LinkSkin.png'
         ));
 
         this.character.add(this.loadMorphMesh(
             './assets/LinkMouth1.obj', 
-            './assets/LinkMouth2.obj', 
+            './assets/LinkMouth' + this.targetMesh + '.obj', 
             './assets/LinkBody.png'
         ));
 
@@ -119,6 +122,8 @@ export class ExampleApp extends gfx.GfxApp
     {
         // Create morph mesh
         const morphMesh = new gfx.MorphMesh3();
+
+        morphMesh.material.side = gfx.Side.DOUBLE;
 
         gfx.MeshLoader.loadOBJ(meshFile1, (loadedMesh: gfx.Mesh3)=>{
             morphMesh.positionBuffer = loadedMesh.positionBuffer;
